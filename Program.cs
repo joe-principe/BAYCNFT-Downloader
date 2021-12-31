@@ -44,6 +44,7 @@ namespace BAYCNFT_Downloader
             }
             catch
             {
+                Console.WriteLine("The URL does not exist.");
                 return false;
             }
         }

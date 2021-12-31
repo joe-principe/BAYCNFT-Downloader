@@ -1,5 +1,4 @@
-﻿using System.Runtime.Serialization;
-using System;
+﻿using System;
 using System.Net;
 using RestSharp;
 using Newtonsoft.Json.Linq;
@@ -11,12 +10,10 @@ namespace BAYCNFT_Downloader
         static void Main(string[] args)
         {
             const string assetContractAddress = "https://api.opensea.io/api/v1/asset/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d";
-            int assetID = 0;
-            string url = $"{assetContractAddress}/{assetID}";
-            bool status = CheckURLStatus(url);
 
-            while (status == true)
+            for (int assetID = 0; assetID < 10000; assetID++)
             {
+                string url = $"{assetContractAddress}/{assetID}";
                 var client = new RestClient(url);
                 var request = new RestRequest(Method.GET);
                 IRestResponse response = client.Execute(request);
@@ -25,13 +22,15 @@ namespace BAYCNFT_Downloader
                 string imageURL = (string)o.SelectToken("image_url");
 
                 DownloadImage(imageURL, assetID);
-
-                assetID += 1;
-                url = $"{assetContractAddress}/{assetID}";
-                status = CheckURLStatus(url);
             }
         }
-        public static bool CheckURLStatus(string website)
+        /// <summary>
+        /// Checks to see if the given website URL is valid
+        /// No longer used, but still useful if I decide to rewrite this code
+        /// </summary>
+        /// <param name="website">A string containing the website URL</param>
+        /// <returns>A boolean indicating whether or not the website exists</returns>
+        /* public static bool CheckURLStatus(string website)
         {
             try
             {
@@ -47,7 +46,13 @@ namespace BAYCNFT_Downloader
                 Console.WriteLine("The URL does not exist.");
                 return false;
             }
-        }
+        } */
+
+        /// <summary>
+        /// Saves the image as a .png to a directory in the Pictures directory
+        /// </summary>
+        /// <param name="imageUrl">A string containing the image URL</param>
+        /// <param name="assetID">An integer containing the ID of the NFT</param>
         public static void DownloadImage(string imageUrl, int assetID)
         {
             using (WebClient client = new WebClient())

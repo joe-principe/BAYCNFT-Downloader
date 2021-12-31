@@ -12,22 +12,24 @@ namespace BAYCNFT_Downloader
         {
             const string assetContractAddress = "https://api.opensea.io/api/v1/asset/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d";
             int assetID = 0;
-            string uri = $"{assetContractAddress}/{assetID}";
-            bool status = CheckURLStatus("uri");
+            string url = $"{assetContractAddress}/{assetID}";
+            bool status = CheckURLStatus(url);
 
-            // while (status == true)
-            // {
-            //     var client = new RestClient("uri");
-            //     var request = new RestRequest(Method.GET);
-            //     IRestResponse response = client.Execute(request);
-            // }
+            while (status == true)
+            {
+                var client = new RestClient(url);
+                var request = new RestRequest(Method.GET);
+                IRestResponse response = client.Execute(request);
 
-            var client = new RestClient(uri);
-            var request = new RestRequest(Method.GET);
-            IRestResponse response = client.Execute(request);
-            JObject o = JObject.Parse(response.Content);
-            string imageURL = (string)o.SelectToken("image_url");
-            DownloadImage(imageURL, assetID);
+                JObject o = JObject.Parse(response.Content);
+                string imageURL = (string)o.SelectToken("image_url");
+
+                DownloadImage(imageURL, assetID);
+
+                assetID += 1;
+                url = $"{assetContractAddress}/{assetID}";
+                status = CheckURLStatus(url);
+            }
         }
         public static bool CheckURLStatus(string website)
         {
@@ -50,6 +52,7 @@ namespace BAYCNFT_Downloader
             using (WebClient client = new WebClient())
             {
                 client.DownloadFile(new Uri(imageUrl), @$"C:\Users\Joe\Pictures\BAYC_NFTs\BAYC_{assetID}.png");
+                Console.WriteLine($"Monkey NFT #{assetID} has been downloaded");
             }
         }
     }

@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Qb8JN52i+5Jt9QT3opFWZ8/vGQ+PXTWicCXPzC3kiPEiqLvrMW5gVrlYlhFsSd+c6D+JkKJEs1wYWPMJjxoneg==",
+  "dgSpecHash": "DtZCyMgwcd3238yUtE+fAmULHZ4P322kO2vdkUyiv9kWwNhRadBOqbE4rtThsbCRZSdzVjW6/V3aqmQtkW3sVQ==",
   "success": true,
   "projectFilePath": "D:\\Programming\\C_Sharp\\Projects\\BAYCNFT-Downloader\\BAYCNFT-Downloader\\BAYCNFT-Downloader.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Joe\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\Joe\\.nuget\\packages\\restsharp\\106.15.0\\restsharp.106.15.0.nupkg.sha512"
   ],
   "logs": []

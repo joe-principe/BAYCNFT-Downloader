@@ -16,3 +16,4 @@ D:\Programming\C_Sharp\Projects\BAYCNFT-Downloader\BAYCNFT-Downloader\obj\Debug\
 D:\Programming\C_Sharp\Projects\BAYCNFT-Downloader\BAYCNFT-Downloader\obj\Debug\net5.0\ref\BAYCNFT-Downloader.dll
 D:\Programming\C_Sharp\Projects\BAYCNFT-Downloader\BAYCNFT-Downloader\obj\Debug\net5.0\BAYCNFT-Downloader.pdb
 D:\Programming\C_Sharp\Projects\BAYCNFT-Downloader\BAYCNFT-Downloader\obj\Debug\net5.0\BAYCNFT-Downloader.genruntimeconfig.cache
+D:\Programming\C_Sharp\Projects\BAYCNFT-Downloader\BAYCNFT-Downloader\bin\Debug\net5.0\Newtonsoft.Json.dll

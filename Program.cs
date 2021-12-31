@@ -1,6 +1,8 @@
-﻿using System;
+﻿using System.Runtime.Serialization;
+using System;
 using System.Net;
 using RestSharp;
+using Newtonsoft.Json.Linq;
 
 namespace BAYCNFT_Downloader
 {
@@ -18,16 +20,14 @@ namespace BAYCNFT_Downloader
             //     var client = new RestClient("uri");
             //     var request = new RestRequest(Method.GET);
             //     IRestResponse response = client.Execute(request);
-            //     if (response.IsSuccessful)
-            //     {
-            //         Console.WriteLine("Hooray! It worked!");
-            //     }
             // }
 
             var client = new RestClient(uri);
             var request = new RestRequest(Method.GET);
             IRestResponse response = client.Execute(request);
-            Console.WriteLine(response.Content);
+            JObject o = JObject.Parse(response.Content);
+            string imageURL = (string)o.SelectToken("image_url");
+            DownloadImage(imageURL, assetID);
         }
         public static bool CheckURLStatus(string website)
         {
@@ -44,6 +44,13 @@ namespace BAYCNFT_Downloader
             {
                 return false;
             }
-        }  
+        }
+        public static void DownloadImage(string imageUrl, int assetID)
+        {
+            using (WebClient client = new WebClient())
+            {
+                client.DownloadFile(new Uri(imageUrl), @$"C:\Users\Joe\Pictures\BAYC_NFTs\BAYC_{assetID}.png");
+            }
+        }
     }
 }

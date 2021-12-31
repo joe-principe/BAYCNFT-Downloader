@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using RestSharp;
 
 namespace BAYCNFT_Downloader
 {
@@ -17,9 +18,13 @@ namespace BAYCNFT_Downloader
                 var client = new RestClient("uri");
                 var request = new RestRequest(Method.GET);
                 IRestResponse response = client.Execute(request);
+                if (response.IsSuccessful)
+                {
+                    Console.WriteLine("Hooray! It worked!");
+                }
             }
         }
-        public bool CheckURLStatus(string website)
+        public static bool CheckURLStatus(string website)
         {
             try
             {

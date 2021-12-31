@@ -24,6 +24,7 @@ namespace BAYCNFT_Downloader
                 DownloadImage(imageURL, assetID);
             }
         }
+        
         /// <summary>
         /// Checks to see if the given website URL is valid
         /// No longer used, but still useful if I decide to rewrite this code

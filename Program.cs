@@ -8,21 +8,26 @@ namespace BAYCNFT_Downloader
     {
         static void Main(string[] args)
         {
-            const string assetContractAddress = "https://opensea.io/assets/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d";
+            const string assetContractAddress = "https://api.opensea.io/api/v1/asset/0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d";
             int assetID = 0;
             string uri = $"{assetContractAddress}/{assetID}";
             bool status = CheckURLStatus("uri");
 
-            while (status == true)
-            {
-                var client = new RestClient("uri");
-                var request = new RestRequest(Method.GET);
-                IRestResponse response = client.Execute(request);
-                if (response.IsSuccessful)
-                {
-                    Console.WriteLine("Hooray! It worked!");
-                }
-            }
+            // while (status == true)
+            // {
+            //     var client = new RestClient("uri");
+            //     var request = new RestRequest(Method.GET);
+            //     IRestResponse response = client.Execute(request);
+            //     if (response.IsSuccessful)
+            //     {
+            //         Console.WriteLine("Hooray! It worked!");
+            //     }
+            // }
+
+            var client = new RestClient(uri);
+            var request = new RestRequest(Method.GET);
+            IRestResponse response = client.Execute(request);
+            Console.WriteLine(response.Content);
         }
         public static bool CheckURLStatus(string website)
         {
